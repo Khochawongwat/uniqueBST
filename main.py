@@ -12,11 +12,9 @@ def transverse(node, result):
     transverse(node.right, result)
 
 def generateBTS(n: int = 3):
-    NONE_LIST = [None]
-
     def helper(start, end):
         if start > end:
-            return NONE_LIST
+            return [None]
         results = []
         for i in range(start, end + 1):
             left = helper(start, i - 1)
@@ -25,11 +23,15 @@ def generateBTS(n: int = 3):
             for l in left:
                 for r in right:
                     node = Node(i)
+                    results.append(node)
                     node.left = l
                     node.right = r
-                    results.append(node)
         return results
-
+    
     bts = helper(1, n)
-    results = [transverse(node, []) for node in bts]
+    results = []
+    for node in bts:
+        result = []
+        transverse(node, result)
+        results.append(result)
     return results
