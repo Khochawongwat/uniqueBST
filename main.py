@@ -1,18 +1,18 @@
 class Node:
-    def __init__(self, data):
+    def __init__(self, data: int) -> None:
         self.data = data
         self.left = None
         self.right = None
 
-def transverse(node, result):
+def transverse(node: Node, result: list) -> None:
     if node is None:
         return
     result.append(node.data)
     transverse(node.left, result)
     transverse(node.right, result)
 
-def generateBTS(n: int = 3):
-    def helper(start, end):
+def generateBTS(n: int):
+    def helper(start: int, end: int):
         if start > end:
             return [None]
         results = []
